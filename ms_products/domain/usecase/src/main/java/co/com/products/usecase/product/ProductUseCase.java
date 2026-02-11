@@ -7,8 +7,6 @@ import co.com.products.model.util.ConstantsBusinessException;
 import lombok.RequiredArgsConstructor;
 import lombok.NonNull;
 import lombok.extern.java.Log;
-import lombok.extern.log4j.Log4j;
-import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -34,7 +32,7 @@ public final class ProductUseCase {
                 .saveProduct(product)
                 .name("ProductUseCase#createProduct")
                 .doOnSuccess(p -> {log.info("Product saved: " + p.toString());})
-                .doOnError(e -> {log.error("Error: " + e.getMessage());});
+                .doOnError(e -> {log.info("Error: " + e.getMessage());});
     }
 
     /**
@@ -53,7 +51,7 @@ public final class ProductUseCase {
                 .name("ProductUseCase#getProductById")
                 // .tag("productId", id)
                 .doOnSuccess(p -> {log.info("Product retrieved: " + p.toString());})
-                .doOnError(e -> {log.error("Error: " + e.getMessage());});
+                .doOnError(e -> {log.info("Error: " + e.getMessage());});
     }
 
     /**
@@ -73,7 +71,7 @@ public final class ProductUseCase {
                 .name("ProductUseCase#updateProduct")
                 // .tag("productId", safeId(product))
                 .doOnSuccess(p -> {log.info("Product updated: " + p.toString());})
-                .doOnError(e -> {log.error("Error: " + e.getMessage());});
+                .doOnError(e -> {log.info("Error: " + e.getMessage());});
     }
 
     /**
