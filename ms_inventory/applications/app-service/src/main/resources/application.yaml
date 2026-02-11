@@ -24,7 +24,7 @@ cors:
 adapter:
   restconsumer:
     timeout: 5000
-    url: "http://localhost:8080"
+    url: "http://localhost:8089"
 resilience4j:
   circuitbreaker:
     instances:
@@ -39,9 +39,9 @@ resilience4j:
         waitDurationInOpenState: "10s"
 adapters:
   r2dbc:
-    host: "192.168.0.13"
+    host: "localhost"
     port: 5432
-    database: "products"
-    schema: "sh_products"
-    username: "admin"
-    password: "admin123"
+    database: "inventory_db"
+    schema: "inventory"
+    username: "postgres"
+    password: "postgres_pass"

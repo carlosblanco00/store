@@ -42,6 +42,7 @@ public class InventoryUseCase {
                         .flatMap(pi ->
                                 validateAndDecrease(pi, entry.getValue()))
                         .doOnNext(pi -> Mono.fromRunnable(() -> purchaseEvent(pi, entry.getValue())))
+
                 );
     }
 

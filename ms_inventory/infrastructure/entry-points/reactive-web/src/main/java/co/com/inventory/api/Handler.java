@@ -47,7 +47,7 @@ public class Handler {
 
         return request.bodyToMono(PurchaseRequest.class)
                 .switchIfEmpty(Mono.error(new SystemException(ConstantsSystemException.BAD_REQUEST_EXCEPTION)))
-                .map(useCase::decreaseStockOnPurchase)
+                .flatMap(pr -> useCase.decreaseStockOnPurchase(pr).collectList())
                 .flatMap(created ->
                         ServerResponse
                                 .created(request.uri())
