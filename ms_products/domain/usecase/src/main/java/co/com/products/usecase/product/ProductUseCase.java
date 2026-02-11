@@ -33,9 +33,8 @@ public final class ProductUseCase {
         return productGateway
                 .saveProduct(product)
                 .name("ProductUseCase#createProduct")
-                .doOnSubscribe(s -> {/* log/debug hook */})
-                .doOnSuccess(p -> {/* log/debug hook */})
-                .doOnError(e -> {/* log/error hook */});
+                .doOnSuccess(p -> {log.info("Product saved: " + p.toString());})
+                .doOnError(e -> {log.error("Error: " + e.getMessage());});
     }
 
     /**
@@ -53,8 +52,8 @@ public final class ProductUseCase {
                 .switchIfEmpty(Mono.error(new BusinessException(ConstantsBusinessException.PRODUCT_NOT_FOUNT_EXCEPTION)))
                 .name("ProductUseCase#getProductById")
                 // .tag("productId", id)
-                .doOnSubscribe(s -> {/* log/debug hook */})
-                .doOnError(e -> {/* log/error hook */});
+                .doOnSuccess(p -> {log.info("Product retrieved: " + p.toString());})
+                .doOnError(e -> {log.error("Error: " + e.getMessage());});
     }
 
     /**
@@ -73,8 +72,8 @@ public final class ProductUseCase {
                 .switchIfEmpty(Mono.error(new BusinessException(ConstantsBusinessException.PRODUCT_NOT_FOUNT_EXCEPTION)))
                 .name("ProductUseCase#updateProduct")
                 // .tag("productId", safeId(product))
-                .doOnSubscribe(s -> {/* log/debug hook */})
-                .doOnError(e -> {/* log/error hook */});
+                .doOnSuccess(p -> {log.info("Product updated: " + p.toString());})
+                .doOnError(e -> {log.error("Error: " + e.getMessage());});
     }
 
     /**
